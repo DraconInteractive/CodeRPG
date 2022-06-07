@@ -94,7 +94,7 @@ but unfortunately, this wouldn't work.
 
 Why? 
 
-#### Moving to a target (attackRange, while & Wait())
+#### * Moving to a target (attackRange, while & Wait())
 
 First off, your player can't teleport! So we have given them a target to move towards, but they will take time to reach the position you gave them. 
 So we need to Wait() for them to reach the target. 
@@ -103,15 +103,15 @@ To do this, we use a 'while' loop. This is IMPORTANT! Never use a while loop wit
 
 In your Setup function, add this: 
 ```cs
-	public void Setup () 
-	{
-		UpdateTarget();
-		player.MoveTo(target.Position);
+public void Setup () 
+{
+    UpdateTarget();
+    player.MoveTo(target.Position);
     while (Vector3.Distance(player.Position, target.Position) > player.attackRange)
     {
       Wait();
     }
-	}
+}
 ```
 
 We've introduced a few new things here! 
@@ -130,7 +130,7 @@ If we forgot Wait(), it would make the player try to check again and again insid
 
 This is generally considered bad. 
 
-### Attacking a target (Attack(), Cooling and attackCooldown)
+#### * Attacking a target (Attack(), Cooling and attackCooldown)
 
 Now we are in range, we want to attack our target! 
 
@@ -138,3 +138,58 @@ We can do this with
 ```cs
 player.Attack(target.ID);
 ```
+
+But we are going to run into another problem.  
+The player can't attack instantaneously, so we need to wait for them to recover from their attack before we attack again. 
+
+Luckily, the player has all the information we need to make this work. 
+
+There are two variables we need to check.  
+player.Cooling is a boolean variable (true/false) that tells us whether the player is currently cooling down from their strike.  
+player.attackCooldown is a float variable (decimal number) that tells us how long the player needs to cool down after they finish their strike. 
+
+So there are actually two ways you could make this work! 
+
+Option 1: This option will wait for the player to stop cooling before striking again
+
+```cs
+public void Setup () 
+{
+    UpdateTarget();
+    player.MoveTo(target.Position);
+    while (Vector3.Distance(player.Position, target.Position) > player.attackRange)
+    {
+      Wait();
+    }
+    
+    player.Attack(target.ID);
+    while (player.Cooling)
+    {
+    	Wait();
+    }
+    player.Attack(target.ID);
+}
+```
+
+Option 2: This option tells the game to Wait() for a specific amount of time (the cooldown time) before trying again. 
+```cs
+public void Setup () 
+{
+    UpdateTarget();
+    player.MoveTo(target.Position);
+    while (Vector3.Distance(player.Position, target.Position) > player.attackRange)
+    {
+      Wait();
+    }
+    
+    player.Attack(target.ID);
+    Wait(player.attackCooldown);
+    player.Attack(target.ID);
+}
+```
+
+### Good job! 
+
+You are become death, he who strikes twice and then goes to sleep! 
+
+I am going to write more tutorials for this program, but later. For now, enjoy using the documentation to figure out how to do cool stuff!
