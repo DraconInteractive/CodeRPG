@@ -31,7 +31,7 @@ Methods:
 void Log.Add(string message); // Register a message with the characters log. Messages over Log.Size will be discarded
 void Log.Clear(); // Remove all messages from the Log
 ```
-## Player: Character
+## Player : Character
 
 Variables:
 
