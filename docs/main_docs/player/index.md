@@ -10,14 +10,14 @@ Variables:
 get {} string ID; // Unique identifier for all characters
 
 get {} string Log.Value; // Retrieve the current Log output
-get {} set {} int Log.Size // Retrieve the current capacity of the log
+get {} set {} int Log.Size; // Retrieve the current capacity of the log
 
 get {} Vector3 Position; // Current world position of the character
 
 get {} float CurrentHealth;
 get {} float MaxHealth;
 get {} float CurrentEnergy;
-get {} float MaxEnergy
+get {} float MaxEnergy;
 
 get {} float AttackPower; // Damage output
 get {} bool Cooling; // Is the attack cooling down?
