@@ -28,8 +28,8 @@ get {} float AttackRange; // Maximum attack range in meters
 Methods: 
 
 ```cs
-void Log.Add(string message) // Register a message with the characters log. Messages over Log.Size will be discarded
-void Log.Clear() // Remove all messages from the Log
+void Log.Add(string message); // Register a message with the characters log. Messages over Log.Size will be discarded
+void Log.Clear(); // Remove all messages from the Log
 ```
 ## Player: Character
 
@@ -44,7 +44,7 @@ get {} float MaxExp;
 Methods:
 
 ```cs
-void MoveTo (Vector3 position) // Attempt to move to the specified position
-void Attack (CharacterRuntimeBridge target) // Attempt to attack the specified target
-void Attack (string _ID) // Attempt to attack the target with specified ID
+void MoveTo (Vector3 position); // Attempt to move to the specified position
+void Attack (CharacterRuntimeBridge target); // Attempt to attack the specified target
+void Attack (string _ID); // Attempt to attack the target with specified ID
 ```
