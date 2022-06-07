@@ -37,6 +37,21 @@ void Attack (CharacterRuntimeBridge target); // Attempt to attack the specified 
 void Attack (string _ID); // Attempt to attack the target with specified ID
 ```
 
+## GameRuntimeBridge
+
+Variables:
+
+```cs
+List<CharacterRuntimeBridge> characters;
+```
+
+Methods:
+
+```cs
+CharacterRuntimeBridge[] AllCharacters () // Returns an array with all characters within
+CharacterRuntimeBridge FindCharacter (string ID) // Returns character with matching ID
+```
+
 ## CharacterRuntimeBridge
 
 Variables:
